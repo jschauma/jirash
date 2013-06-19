@@ -432,7 +432,7 @@ class JiraShell(cmdln.Cmdln):
         if not cfg_path:
             cfg_path = os.path.expanduser("~/.jirash.json")
         if not os.path.exists(cfg_path):
-            sys.stderr.write("'%s' config file does not exist" % cfg_path)
+            sys.stderr.write("'%s' config file does not exist\n" % cfg_path)
             sys.exit(1)
         f = codecs.open(cfg_path, 'r', 'utf8')
         try:
