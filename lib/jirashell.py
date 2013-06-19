@@ -15,6 +15,7 @@ warnings.filterwarnings("ignore", module="wstools.XMLSchema", lineno=3107)
 #   /opt/local/lib/python2.6/xmlrpclib.py:612: DeprecationWarning: The xmllib module is obsolete.
 warnings.filterwarnings("ignore", module="xmlrpclib", lineno=612)
 
+import getpass
 import os
 import sys
 import logging
@@ -447,6 +448,8 @@ class JiraShell(cmdln.Cmdln):
             sys.exit(0)
         self.cfg = self._load_cfg()
         self.jira_url = self.options.jira_url or self.cfg["jira_url"]
+        if not self.cfg[self.jira_url].has_key("password"):
+            self.cfg[self.jira_url]["password"] = getpass.getpass("Jira password: ")
 
     _jira_cache = None
     @property
